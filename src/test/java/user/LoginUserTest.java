@@ -12,7 +12,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.apache.http.HttpStatus.SC_OK;
 
 public class LoginUserTest {
-    CreateUser createUser;
+    private CreateUser createUser;
     private UserStep userStep;
     private LoginUser loginUser;
     private String accessToken;
@@ -40,7 +40,7 @@ public class LoginUserTest {
     @DisplayName("Логинимся с неверным email")
     @Description("Проверяем ввод не верного email")
     public void loginUserWrongEmail() {
-        loginUser = new LoginUser( createUser.getEmail(),"test@ya.ru");
+        loginUser = new LoginUser(createUser.getEmail(), "test@ya.ru");
         ValidatableResponse responseLogin = userStep.loginUser(loginUser);
         responseLogin
                 .assertThat()
@@ -52,7 +52,7 @@ public class LoginUserTest {
     @DisplayName("Логинимся с неверным паролем")
     @Description("Проверяем ввод не верного пароля")
     public void loginUserWrongPassword() {
-        loginUser = new LoginUser( createUser.getPassword(),"1");
+        loginUser = new LoginUser(createUser.getPassword(), "1");
         ValidatableResponse responseLogin = userStep.loginUser(loginUser);
         responseLogin
                 .assertThat()

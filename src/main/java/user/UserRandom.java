@@ -1,6 +1,7 @@
 package user;
 
 import com.github.javafaker.Faker;
+
 public class UserRandom {
     public static CreateUser getUserRandom() {
         Faker faker = new Faker();

@@ -7,6 +7,7 @@ import org.junit.Test;
 import user.CreateUser;
 import user.UserRandom;
 import user.UserStep;
+
 import static order.Ingredients.ingredients;
 import static order.Ingredients.wrongIngredients;
 import static org.apache.http.HttpStatus.SC_BAD_REQUEST;
@@ -14,10 +15,10 @@ import static org.apache.http.HttpStatus.SC_OK;
 import static org.hamcrest.CoreMatchers.is;
 
 public class CreateOrderTest {
-    CreateUser createUser;
-    CreateOrder createOrder;
-    UserStep userStep;
-    OrderStep orderStep;
+    private CreateUser createUser;
+    private CreateOrder createOrder;
+    private UserStep userStep;
+    private OrderStep orderStep;
     private String accessToken;
 
     @Before
@@ -42,7 +43,7 @@ public class CreateOrderTest {
 
     @Test
     @DisplayName("Создание заказа без авторизации и с ингредиентами")
-    public void createOrderWithoutAuthorization () {
+    public void createOrderWithoutAuthorization() {
         createOrder = new CreateOrder(ingredients);
         ValidatableResponse response = orderStep.createOrderWithoutAuthorisation(createOrder);
         response
@@ -55,7 +56,7 @@ public class CreateOrderTest {
     @DisplayName("Создание заказа с авторизацией и без ингредиентов")
     public void createOrderWithIngredients() {
         createOrder = new CreateOrder(null);
-        ValidatableResponse response = orderStep.createOrderAuthorised(createOrder,accessToken);
+        ValidatableResponse response = orderStep.createOrderAuthorised(createOrder, accessToken);
         response
                 .assertThat()
                 .statusCode(SC_BAD_REQUEST)

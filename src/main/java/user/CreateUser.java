@@ -1,7 +1,6 @@
 package user;
 
 
-
 public class CreateUser {
     private String email;
     private String password;

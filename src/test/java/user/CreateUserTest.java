@@ -1,4 +1,5 @@
 package user;
+
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
@@ -11,7 +12,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.apache.http.HttpStatus.SC_OK;
 
 public class CreateUserTest {
-    CreateUser createUser;
+    private CreateUser createUser;
     private UserStep userStep;
     private String accessToken;
 

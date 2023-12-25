@@ -8,17 +8,18 @@ import user.CreateUser;
 import user.LoginUser;
 import user.UserRandom;
 import user.UserStep;
+
 import static order.Ingredients.ingredients;
 import static org.apache.http.HttpStatus.SC_UNAUTHORIZED;
 import static org.hamcrest.CoreMatchers.is;
 import static org.apache.http.HttpStatus.SC_OK;
 
 public class OrderUserTest {
-    CreateOrder createOrder;
-    OrderStep orderStep;
-    CreateUser createUser;
-    UserStep userStep;
-    LoginUser loginUser;
+    private CreateOrder createOrder;
+    private OrderStep orderStep;
+    private CreateUser createUser;
+    private UserStep userStep;
+    private LoginUser loginUser;
     private String accessToken;
 
     @Before

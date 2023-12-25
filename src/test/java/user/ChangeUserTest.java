@@ -12,15 +12,14 @@ import static org.apache.http.HttpStatus.SC_UNAUTHORIZED;
 import static org.hamcrest.CoreMatchers.is;
 
 public class ChangeUserTest {
-    CreateUser createUser;
-    UserStep userStep;
+    private CreateUser createUser;
+    private UserStep userStep;
     private String accessToken;
 
     @Before
     public void setUp() {
         userStep = new UserStep();
         createUser = UserRandom.getUserRandom();
-        userStep.registerUser(createUser);
     }
 
     @Test
@@ -29,8 +28,7 @@ public class ChangeUserTest {
     public void changeUserLoginAuthorised() {
         ValidatableResponse createResponse = userStep.registerUser(createUser);
         accessToken = createResponse.extract().path("accessToken");
-        createUser.setName("test");
-        ValidatableResponse response = userStep.changeUserAuthorised(createUser, accessToken);
+        ValidatableResponse response = userStep.changeUserAuthorised(UserRandom.getUserRandom(), accessToken);
         response
                 .statusCode(SC_OK)
                 .body("success", is(true));
@@ -40,6 +38,7 @@ public class ChangeUserTest {
     @DisplayName("Изменение данных пользователя без авторизации")
     @Description("Проверяем что пользователь сменил имя")
     public void changeUserEmailAuthorised() {
+        userStep.registerUser(createUser);
         ValidatableResponse response2 = userStep.changeUserWithoutAuthorised(UserRandom.getUserRandom());
         response2
                 .assertThat()
